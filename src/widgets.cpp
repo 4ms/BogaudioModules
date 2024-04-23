@@ -342,6 +342,11 @@ StatefulButton::StatefulButton(const char* offSvgPath, const char* onSvgPath) {
 	_frames.push_back(APP->window->loadSvg(asset::plugin(pluginInstance, onSvgPath)));
 
 	_svgWidget->setSvg(svg);
+
+	// METAMODULE:
+	setSvg(svg);
+	////////////
+
 	box.size = _svgWidget->box.size;
 	shadow->box.size = _svgWidget->box.size;
 	shadow->blurRadius = 1.0;

@@ -141,6 +141,11 @@ SoloMuteButton::SoloMuteButton() {
 	_frames.push_back(APP->window->loadSvg(asset::plugin(pluginInstance, "res/button_18px_1_green.svg")));
 
 	_svgWidget->setSvg(svg);
+
+	//METAMODULE:
+	setSvg(svg);
+	///////////////
+
 	box.size = _svgWidget->box.size;
 	shadow->box.size = _svgWidget->box.size;
 	shadow->blurRadius = 1.0;
