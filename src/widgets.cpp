@@ -482,19 +482,29 @@ InvertingIndicatorButton::InvertingIndicatorButton(int dim) {
 	box.size = math::Vec(dim, dim);
 	// box.pos = math::Vec(0, 0);
 	// fb = new widget::FramebufferWidget;
-	addChild(fb);
-	fb->box.size = box.size;
+	// addChild(fb);
+	// fb->box.size = box.size;
 
+	if (dim == 18) {
+		addFrame(Svg::load(asset::plugin(pluginInstance, "res/button_18px_0.svg")));
+		addFrame(Svg::load(asset::plugin(pluginInstance, "res/button_18px_1_green.svg")));
+		addFrame(Svg::load(asset::plugin(pluginInstance, "res/button_18px_1_orange.svg")));
+	}
+	else if (dim == 9) {
+		addFrame(Svg::load(asset::plugin(pluginInstance, "res/button_9px_0.svg")));
+		addFrame(Svg::load(asset::plugin(pluginInstance, "res/button_9px_1_green.svg")));
+		addFrame(Svg::load(asset::plugin(pluginInstance, "res/button_9px_1_orange.svg")));
+	}
 	// shadow = new CircularShadow;
-	shadow->box.size = box.size;
-	shadow->blurRadius = 2.0;
-	shadow->box.pos = Vec(0.0, 1.0);
-	fb->addChild(shadow);
+	// shadow->box.size = box.size;
+	// shadow->blurRadius = 2.0;
+	// shadow->box.pos = Vec(0.0, 1.0);
+	// fb->addChild(shadow);
 
-	w = new IIBWidget(dim);
-	w->box.size = box.size;
+	// w = new IIBWidget(dim);
+	// w->box.size = box.size;
 	// w->box.pos = math::Vec(0, 0);
-	fb->addChild(w);
+	// fb->addChild(w);
 }
 
 void InvertingIndicatorButton::onHover(const event::Hover& e) {
