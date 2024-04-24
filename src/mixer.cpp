@@ -128,26 +128,17 @@ void MuteButton::drawLit(const DrawArgs& args) {
 
 
 SoloMuteButton::SoloMuteButton() {
-	shadow = new CircularShadow();
 	addChild(shadow);
 
-	_svgWidget = new SvgWidget();
-	addChild(_svgWidget);
+	addChild(sw);
 
-	auto svg = APP->window->loadSvg(asset::plugin(pluginInstance, "res/button_18px_0.svg"));
-	_frames.push_back(svg);
-	_frames.push_back(APP->window->loadSvg(asset::plugin(pluginInstance, "res/button_18px_1_orange.svg")));
-	_frames.push_back(APP->window->loadSvg(asset::plugin(pluginInstance, "res/button_18px_1_green.svg")));
-	_frames.push_back(APP->window->loadSvg(asset::plugin(pluginInstance, "res/button_18px_1_green.svg")));
+	addFrame(APP->window->loadSvg(asset::plugin(pluginInstance, "res/button_18px_0.svg")));
+	addFrame(APP->window->loadSvg(asset::plugin(pluginInstance, "res/button_18px_1_orange.svg")));
+	addFrame(APP->window->loadSvg(asset::plugin(pluginInstance, "res/button_18px_1_green.svg")));
+	// addFrame(APP->window->loadSvg(asset::plugin(pluginInstance, "res/button_18px_1_green.svg")));
 
-	_svgWidget->setSvg(svg);
-
-	//METAMODULE:
-	setSvg(svg);
-	///////////////
-
-	box.size = _svgWidget->box.size;
-	shadow->box.size = _svgWidget->box.size;
+	box.size = sw->box.size;
+	shadow->box.size = sw->box.size;
 	shadow->blurRadius = 1.0;
 	shadow->box.pos = Vec(0.0, 1.0);
 }
@@ -177,11 +168,11 @@ void SoloMuteButton::onButton(const event::Button& e) {
 }
 
 void SoloMuteButton::onChange(const event::Change& e) {
-	assert(_frames.size() == 4);
+	// assert(_frames.size() == 4);
 	if (getParamQuantity()) {
 		float value = getParamQuantity()->getValue();
 		assert(value >= 0.0f && value <= 3.0f);
-		_svgWidget->setSvg(_frames[(int)value]);
+		// sw->setSvg(frames[(int)value]);
 	}
 	ParamWidget::onChange(e);
 }

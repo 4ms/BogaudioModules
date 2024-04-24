@@ -83,10 +83,10 @@ struct MuteButton : LightEmittingWidget<ToggleButton> {
 	void drawLit(const DrawArgs& args) override;
 };
 
-struct SoloMuteButton : LightEmittingWidget<ParamWidget> {
-	std::vector<std::shared_ptr<Svg>> _frames;
-	SvgWidget* _svgWidget; // deleted elsewhere.
-	CircularShadow* shadow = NULL;
+struct SoloMuteButton : LightEmittingWidget<SvgSwitch> {
+	// std::vector<std::shared_ptr<Svg>> _frames; ==> SvgSwitch::frames
+	// SvgWidget* _svgWidget; // deleted elsewhere. ==> SvgSwitch::sw
+	// CircularShadow* shadow = NULL; ==> SvgSwitch::shadow
 
 	SoloMuteButton();
 	void onButton(const event::Button& e) override;
