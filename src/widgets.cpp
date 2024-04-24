@@ -481,11 +481,11 @@ void InvertingIndicatorButton::IIBWidget::draw(const DrawArgs& args) {
 InvertingIndicatorButton::InvertingIndicatorButton(int dim) {
 	box.size = math::Vec(dim, dim);
 	// box.pos = math::Vec(0, 0);
-	fb = new widget::FramebufferWidget;
+	// fb = new widget::FramebufferWidget;
 	addChild(fb);
 	fb->box.size = box.size;
 
-	shadow = new CircularShadow;
+	// shadow = new CircularShadow;
 	shadow->box.size = box.size;
 	shadow->blurRadius = 2.0;
 	shadow->box.pos = Vec(0.0, 1.0);

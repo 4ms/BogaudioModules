@@ -176,7 +176,7 @@ struct IndicatorButtonGreen9 : LightEmittingWidget<SvgSwitch> {
 	void drawLit(const DrawArgs& args) override;
 };
 
-struct InvertingIndicatorButton : LightEmittingWidget<ParamWidget> {
+struct InvertingIndicatorButton : LightEmittingWidget<SvgSwitch> {
 	struct IIBWidget : widget::Widget {
 		int _dim;
 		NVGcolor _color = nvgRGBA(0x00, 0x00, 0x00, 0x00);
@@ -187,8 +187,8 @@ struct InvertingIndicatorButton : LightEmittingWidget<ParamWidget> {
 		void draw(const DrawArgs& args) override;
 	};
 
-	widget::FramebufferWidget* fb;
-	CircularShadow* shadow;
+	// widget::FramebufferWidget* fb; ==> SvgSwitch::fb
+	// CircularShadow* shadow; ==> SvgSwitch::shadow
 	IIBWidget* w;
 	std::function<bool()> clickToInvertCB;
 	std::function<void(int, float)> onChangeCB;
