@@ -142,10 +142,10 @@ struct Button18 : SvgSwitch {
 	Button18();
 };
 
-struct StatefulButton : ParamWidget {
-	std::vector<std::shared_ptr<Svg>> _frames;
-	SvgWidget* _svgWidget; // deleted elsewhere.
-	CircularShadow* shadow = NULL;
+struct StatefulButton : SvgSwitch {
+	// std::vector<std::shared_ptr<Svg>> _frames; ==> SvgSwitch::frames
+	// SvgWidget* _svgWidget; // deleted elsewhere. ==> SvgSwitch::sw
+	// CircularShadow* shadow = NULL; ==> SvgSwitch::shadow
 
 	StatefulButton(const char* offSvgPath, const char* onSvgPath);
 	void onDragStart(const event::DragStart& e) override;

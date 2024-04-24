@@ -331,31 +331,29 @@ Button18::Button18() {
 
 
 StatefulButton::StatefulButton(const char* offSvgPath, const char* onSvgPath) {
-	shadow = new CircularShadow();
+	// shadow = new CircularShadow();
 	addChild(shadow);
 
-	_svgWidget = new SvgWidget();
-	addChild(_svgWidget);
+	// sw = new SvgWidget();
+	addChild(sw);
 
-	auto svg = APP->window->loadSvg(asset::plugin(pluginInstance, offSvgPath));
-	_frames.push_back(svg);
-	_frames.push_back(APP->window->loadSvg(asset::plugin(pluginInstance, onSvgPath)));
+	addFrame(Svg::load(asset::plugin(pluginInstance, offSvgPath)));
+	addFrame(Svg::load(asset::plugin(pluginInstance, onSvgPath)));
 
-	_svgWidget->setSvg(svg);
+	// auto svg = APP->window->loadSvg(asset::plugin(pluginInstance, offSvgPath));
+	// frames.push_back(svg);
+	// frames.push_back(APP->window->loadSvg(asset::plugin(pluginInstance, onSvgPath)));
 
-	// METAMODULE:
-	setSvg(svg);
-	////////////
-
-	box.size = _svgWidget->box.size;
-	shadow->box.size = _svgWidget->box.size;
+	// sw->setSvg(svg);
+	// box.size = sw->box.size;
+	shadow->box.size = sw->box.size;
 	shadow->blurRadius = 1.0;
 	shadow->box.pos = Vec(0.0, 1.0);
 }
 
 void StatefulButton::onDragStart(const event::DragStart& e) {
 	if (getParamQuantity()) {
-		_svgWidget->setSvg(_frames[1]);
+		sw->setSvg(frames[1]);
 		if (getParamQuantity()->getValue() >= getParamQuantity()->getMaxValue()) {
 			getParamQuantity()->setValue(getParamQuantity()->getMinValue());
 		}
@@ -366,7 +364,7 @@ void StatefulButton::onDragStart(const event::DragStart& e) {
 }
 
 void StatefulButton::onDragEnd(const event::DragEnd& e) {
-	_svgWidget->setSvg(_frames[0]);
+	sw->setSvg(frames[0]);
 }
 
 
