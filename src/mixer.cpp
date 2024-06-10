@@ -135,7 +135,7 @@ SoloMuteButton::SoloMuteButton() {
 	addFrame(APP->window->loadSvg(asset::plugin(pluginInstance, "res/button_18px_0.svg")));
 	addFrame(APP->window->loadSvg(asset::plugin(pluginInstance, "res/button_18px_1_orange.svg")));
 	addFrame(APP->window->loadSvg(asset::plugin(pluginInstance, "res/button_18px_1_green.svg")));
-	// addFrame(APP->window->loadSvg(asset::plugin(pluginInstance, "res/button_18px_1_green.svg")));
+	addFrame(APP->window->loadSvg(asset::plugin(pluginInstance, "res/button_18px_1_green.svg")));
 
 	box.size = sw->box.size;
 	shadow->box.size = sw->box.size;
