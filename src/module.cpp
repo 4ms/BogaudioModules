@@ -63,6 +63,7 @@ void BGModule::process(const ProcessArgs& args) {
 				_channels = channelsNow;
 				_inverseChannels = 1.0f / (float)_channels;
 				channelsChanged(channelsBefore, channelsNow);
+#if defined(METAMODULE)
 				if (channelsBefore < channelsNow) {
 					while (channelsBefore < channelsNow) {
 						addChannel(channelsBefore);
@@ -75,6 +76,7 @@ void BGModule::process(const ProcessArgs& args) {
 						--channelsBefore;
 					}
 				}
+#endif
 			}
 
 			modulate();

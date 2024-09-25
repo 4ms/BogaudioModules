@@ -27,12 +27,19 @@ struct BGModule : Module {
 	std::vector<SkinChangeListener*> _skinChangeListeners;
 
 	BGModule() {
+#if defined(METAMODULE)
+		addChannel(0);
+#endif
 	}
 	virtual ~BGModule() {
+#if defined(METAMODULE)
+		removeChannel(0);
+#else
 		while (_channels >= 1) {
 			removeChannel(_channels - 1);
 			--_channels;
 		}
+#endif
 	}
 
 	void onReset() override;
