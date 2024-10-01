@@ -300,9 +300,10 @@ struct ReftoneWidget : BGModuleWidget {
 			display->box.pos = inset;
 			display->box.size = size;
 #ifdef METAMODULE
+			display->box.pos = Vec(7, 18);
 			display->box.size = Vec(38,58);
             display->font = "Segment14_10";
-            display->color = RGB565{(uint8_t)0x00, 0x00, 0x00};
+            display->color = RGB565{(uint8_t)0x00, 0xff, 0x00};
             display->firstLightId = Reftone::DisplayId;
 #endif
 			addChild(display);
