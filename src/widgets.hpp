@@ -26,10 +26,23 @@ struct LightEmittingWidget : BASE {
 };
 
 #ifdef METAMODULE
-struct DisplayWidget : LightEmittingWidget<MetaModule::VCVTextDisplay> {
-#else
-struct DisplayWidget : LightEmittingWidget<OpaqueWidget> {
+struct TextDisplayWidget : LightEmittingWidget<MetaModule::VCVTextDisplay> {
+	Module* _module = NULL;
+
+	TextDisplayWidget(Module* module) : _module{module} {}
+
+	bool isLit() override {
+	    return _module && !_module->isBypassed();
+    }
+	virtual bool isScreenshot(){
+	    return !_module;
+    }
+	void draw(const DrawArgs& args) override {}
+	void drawLit(const DrawArgs& args) override{}
+	virtual void drawOnce(const DrawArgs& args, bool screenshot, bool lit) = 0;
+};
 #endif
+struct DisplayWidget : LightEmittingWidget<OpaqueWidget> {
 	Module* _module = NULL;
 
 	DisplayWidget(Module* module);

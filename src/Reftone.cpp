@@ -112,9 +112,14 @@ size_t Reftone::get_display_text(int led_id, std::span<char> text) {
         chars_written = snprintf(text.data(), text.size(), "%s%s\n%s\n%.*s", pitch, octave.c_str(), fine.c_str(), 3, frequency.c_str()); 
     return chars_written < 0 ? 0 : chars_written;
 }
+
+
+struct ReftoneDisplay : TextDisplayWidget {
+    using DisplayWidget = TextDisplayWidget;
+#else
+struct ReftoneDisplay : DisplayWidget {
 #endif
 
-struct ReftoneDisplay : DisplayWidget {
 	const NVGcolor _textColor = nvgRGBA(0x00, 0xff, 0x00, 0xee);
 
 	Reftone* _module;
