@@ -54,6 +54,11 @@ struct Reftone : BGModule {
 	}
 
 	void processAll(const ProcessArgs& args) override;
+
+#if defined(METAMODULE)
+    enum DisplayIds { DisplayId = 0 };
+    size_t get_display_text(int led_id, std::span<char> text) override;
+#endif
 };
 
 } // namespace bogaudio

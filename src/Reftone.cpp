@@ -34,6 +34,86 @@ void Reftone::processAll(const ProcessArgs& args) {
 	}
 }
 
+#if defined(METAMODULE)
+size_t Reftone::get_display_text(int led_id, std::span<char> text) {
+    if (led_id != Reftone::DisplayId)
+        return 0;
+
+    auto mPitch = _pitch;
+    auto mOctave = _octave;
+    auto mFine = _fine;
+    auto mFrequency = _frequency;
+
+	std::string octave = std::to_string(mOctave);
+	std::string fine = format("%s%02d", mFine < 0.0 ? "-" : "+", abs((int)(mFine * 100)));
+	std::string frequency = format(mFrequency >= 1000.0 ? "%0.0f" : "%0.1f", mFrequency);
+	const char* pitch = NULL;
+	const char* sharpFlat = NULL;
+	switch (mPitch) {
+		case 0: {
+			pitch = "C";
+			break;
+		}
+		case 1: {
+			pitch = "C";
+			sharpFlat = "#";
+			break;
+		}
+		case 2: {
+			pitch = "D";
+			break;
+		}
+		case 3: {
+			pitch = "E";
+			sharpFlat = "b";
+			break;
+		}
+		case 4: {
+			pitch = "E";
+			break;
+		}
+		case 5: {
+			pitch = "F";
+			break;
+		}
+		case 6: {
+			pitch = "F";
+			sharpFlat = "#";
+			break;
+		}
+		case 7: {
+			pitch = "G";
+			break;
+		}
+		case 8: {
+			pitch = "G";
+			sharpFlat = "#";
+			break;
+		}
+		case 9: {
+			pitch = "A";
+			break;
+		}
+		case 10: {
+			pitch = "B";
+			sharpFlat = "b";
+			break;
+		}
+		case 11: {
+			pitch = "B";
+			break;
+		}
+	}
+
+    auto chars_written = 0;
+	if (sharpFlat) 
+        chars_written = snprintf(text.data(), text.size(), "%s%s%s\n%s\n%.*s", pitch, sharpFlat, octave.c_str(), fine.c_str(), 3, frequency.c_str()); 
+	else 
+        chars_written = snprintf(text.data(), text.size(), "%s%s\n%s\n%.*s", pitch, octave.c_str(), fine.c_str(), 3, frequency.c_str()); 
+    return chars_written < 0 ? 0 : chars_written;
+}
+#endif
+
 struct ReftoneDisplay : DisplayWidget {
 	const NVGcolor _textColor = nvgRGBA(0x00, 0xff, 0x00, 0xee);
 
@@ -219,6 +299,12 @@ struct ReftoneWidget : BGModuleWidget {
 			auto display = new ReftoneDisplay(module, size);
 			display->box.pos = inset;
 			display->box.size = size;
+#ifdef METAMODULE
+			display->box.size = Vec(38,58);
+            display->font = "Segment14_10";
+            display->color = RGB565{(uint8_t)0x00, 0x00, 0x00};
+            display->firstLightId = Reftone::DisplayId;
+#endif
 			addChild(display);
 		}
 

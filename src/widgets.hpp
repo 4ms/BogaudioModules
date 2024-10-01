@@ -25,7 +25,11 @@ struct LightEmittingWidget : BASE {
 	virtual void drawLit(const typename BASE::DrawArgs& args) {}
 };
 
+#ifdef METAMODULE
+struct DisplayWidget : LightEmittingWidget<MetaModule::VCVTextDisplay> {
+#else
 struct DisplayWidget : LightEmittingWidget<OpaqueWidget> {
+#endif
 	Module* _module = NULL;
 
 	DisplayWidget(Module* module);
