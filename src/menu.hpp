@@ -24,7 +24,7 @@ struct OptionMenuItem : MenuItem {
 
 	void step() override {
 		MenuItem::step();
-		rightText = _check() ? "✔" : "";
+		rightText = _check() ? CHECKMARK_STRING : "";
 	}
 };
 
@@ -45,7 +45,7 @@ struct OptionsMenuItem : MenuItem {
 
 	OptionsMenuItem(const char* label) {
 		this->text = label;
-		this->rightText = "▸";
+		this->rightText = RIGHT_ARROW;
 	}
 
 	void addItem(const OptionMenuItem& item);
