@@ -4,9 +4,11 @@
 Skins globalSkins;
 
 Skins &Skins::skins() {
-	globalSkins.loadSkins();
-	globalSkins.loadCssValues();
-	globalSkins._loaded = true;
+	if (!globalSkins._loaded) {
+		globalSkins.loadSkins();
+		globalSkins.loadCssValues();
+		globalSkins._loaded = true;
+	}
 	return globalSkins;
 }
 
@@ -132,9 +134,10 @@ void Skins::deregisterDefaultSkinChangeListener(DefaultSkinChangeListener *liste
 }
 
 void Skins::loadSkins() {
-	_available.push_back(Skin("light", "Light"));
-	_available.push_back(Skin("dark", "Dark"));
-	_available.push_back(Skin("lowcontrast", "Dark (low-contrast)"));
+	_available.clear();
+	// _available.push_back(Skin("light", "Light"));
+	// _available.push_back(Skin("dark", "Dark"));
+	// _available.push_back(Skin("lowcontrast", "Dark (low-contrast)"));
 	_default = "light";
 }
 
