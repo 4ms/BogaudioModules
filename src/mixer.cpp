@@ -170,9 +170,11 @@ void SoloMuteButton::onButton(const event::Button& e) {
 void SoloMuteButton::onChange(const event::Change& e) {
 	// assert(_frames.size() == 4);
 	if (getParamQuantity()) {
+#ifndef METAMODULE
 		float value = getParamQuantity()->getValue();
 		assert(value >= 0.0f && value <= 3.0f);
-		// sw->setSvg(frames[(int)value]);
+		sw->setSvg(frames[(int)value]);
+#endif
 	}
 	ParamWidget::onChange(e);
 }
