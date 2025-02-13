@@ -153,7 +153,6 @@ void init(rack::Plugin *p) {
   p->addModel(modelMegaGate);
   p->addModel(modelPEQ);
 
-  // Can't load because of the dynamic_cast on the sliders:
   p->addModel(modelPEQ6);
   // p->addModel(modelPEQ6XF);
   p->addModel(modelPEQ14);
@@ -177,7 +176,6 @@ void init(rack::Plugin *p) {
   p->addModel(modelWalk2);
   p->addModel(modelWalk);
 
-  // Can't load because of the dynamic_cast
   p->addModel(modelMix8);
   // p->addModel(modelMix8x);
   p->addModel(modelMix4);
@@ -194,7 +192,6 @@ void init(rack::Plugin *p) {
 
   p->addModel(modelUMix);
   p->addModel(modelMumix);
-  // Can't load because of the dynamic_cast
   p->addModel(modelMatrix81);
   p->addModel(modelMatrix18);
   p->addModel(modelMatrix44);
