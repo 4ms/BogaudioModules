@@ -6,6 +6,13 @@ using namespace bogaudio;
 
 #define SKIN "skin"
 
+void BGModule::onRemove() {
+	while (_channels >= 1) {
+		removeChannel(_channels - 1);
+		--_channels;
+	}
+}
+
 void BGModule::onReset() {
 	_steps = _modulationSteps;
 	reset();
@@ -63,7 +70,6 @@ void BGModule::process(const ProcessArgs& args) {
 				_channels = channelsNow;
 				_inverseChannels = 1.0f / (float)_channels;
 				channelsChanged(channelsBefore, channelsNow);
-#if defined(METAMODULE)
 				if (channelsBefore < channelsNow) {
 					while (channelsBefore < channelsNow) {
 						addChannel(channelsBefore);
@@ -76,7 +82,6 @@ void BGModule::process(const ProcessArgs& args) {
 						--channelsBefore;
 					}
 				}
-#endif
 			}
 
 			modulate();
