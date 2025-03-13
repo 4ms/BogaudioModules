@@ -26,11 +26,7 @@ struct BGModule : Module {
 	std::string _skin = "default";
 	std::vector<SkinChangeListener*> _skinChangeListeners;
 
-#if defined(METAMODULE)
-	BGModule() { addChannel(0); }
-#else
 	BGModule() {}
-#endif
 	virtual ~BGModule() {}
 
 	void onRemove() override;
