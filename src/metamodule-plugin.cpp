@@ -154,9 +154,9 @@ void init(rack::Plugin *p) {
   p->addModel(modelPEQ);
 
   p->addModel(modelPEQ6);
-  // p->addModel(modelPEQ6XF);
+  p->addModel(modelPEQ6XF);
   p->addModel(modelPEQ14);
-  // p->addModel(modelPEQ14XF);
+  p->addModel(modelPEQ14XF);
 
   p->addModel(modelDADSRH);
   p->addModel(modelDADSRHPlus);
@@ -177,9 +177,9 @@ void init(rack::Plugin *p) {
   p->addModel(modelWalk);
 
   p->addModel(modelMix8);
-  // p->addModel(modelMix8x);
+  p->addModel(modelMix8x);
   p->addModel(modelMix4);
-  // p->addModel(modelMix4x);
+  p->addModel(modelMix4x);
   p->addModel(modelMix2);
   p->addModel(modelMix1);
   p->addModel(modelVCAmp);
@@ -195,10 +195,10 @@ void init(rack::Plugin *p) {
   p->addModel(modelMatrix81);
   p->addModel(modelMatrix18);
   p->addModel(modelMatrix44);
-  // p->addModel(modelMatrix44Cvm);
+  p->addModel(modelMatrix44Cvm);
   p->addModel(modelMatrix88);
-  // p->addModel(modelMatrix88Cv);
-  // p->addModel(modelMatrix88M);
+  p->addModel(modelMatrix88Cv);
+  p->addModel(modelMatrix88M);
   p->addModel(modelSwitch81);
   p->addModel(modelSwitch18);
   p->addModel(modelSwitch44);
@@ -215,9 +215,9 @@ void init(rack::Plugin *p) {
   p->addModel(modelOneEight);
   p->addModel(modelEightOne);
   p->addModel(modelAddrSeq);
-  // p->addModel(modelAddrSeqX);
+  p->addModel(modelAddrSeqX);
   p->addModel(modelPgmr);
-  // p->addModel(modelPgmrX);
+  p->addModel(modelPgmrX);
 
   p->addModel(modelVU);
 
